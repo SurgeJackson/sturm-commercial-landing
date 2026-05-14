@@ -17,9 +17,10 @@ function CaseCard({ item }: { item: CaseItem }) {
         <Image
           src={item.image}
           alt={`${item.title} — проект из портфолио STURM`}
-          fill
+          width={900}
+          height={675}
           sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover transition duration-500 group-hover:brightness-[0.96]"
+          className="h-full w-full object-cover transition duration-500 group-hover:brightness-[0.96]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1f1f21]/92 via-[#1f1f21]/34 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 border-t border-white/18 bg-[#1f1f21]/78 p-5 shadow-[0_-16px_48px_rgba(0,0,0,0.28)] backdrop-blur-sm">

@@ -11,6 +11,18 @@ type Errors = Partial<Record<string, string>>
 const maxFileSize = 15 * 1024 * 1024
 const allowedFileExtensions = new Set(['pdf', 'xlsx', 'xls', 'doc', 'docx'])
 
+function getAutocomplete(fieldName: string) {
+  const autocomplete: Record<string, string> = {
+    name: 'name',
+    company: 'organization',
+    phone: 'tel',
+    email: 'email',
+    city: 'address-level2',
+  }
+
+  return autocomplete[fieldName]
+}
+
 export function LeadForm() {
   const { form } = landingData
   const section = landingData.sections.lead
@@ -117,6 +129,7 @@ export function LeadForm() {
           <div className='grid gap-5 md:grid-cols-2'>
             {form.fields.map((field) => {
               const error = errors[field.name]
+              const errorId = `${field.name}-error`
               const commonClass =
                 'focus-ring mt-2 min-h-12 w-full rounded-2xl border bg-white px-4 text-sm text-[#1f1f1f] transition placeholder:text-[#9b9184]'
 
@@ -145,6 +158,8 @@ export function LeadForm() {
                       name={field.name}
                       placeholder={field.placeholder}
                       rows={5}
+                      aria-invalid={Boolean(error)}
+                      aria-describedby={error ? errorId : undefined}
                       className={cn(
                         commonClass,
                         'resize-y py-3',
@@ -156,6 +171,8 @@ export function LeadForm() {
                       id={field.name}
                       name={field.name}
                       defaultValue=''
+                      aria-invalid={Boolean(error)}
+                      aria-describedby={error ? errorId : undefined}
                       className={cn(
                         commonClass,
                         error ? 'border-[#8f2d2d]' : 'border-[#d9d2c8]',
@@ -200,8 +217,10 @@ export function LeadForm() {
                         id={field.name}
                         name={field.name}
                         type='file'
-                        accept='.pdf,.xlsx,.xls,.doc,.docx'
+                        accept='.pdf,.xls,.xlsx,.doc,.docx'
                         className='sr-only'
+                        aria-invalid={Boolean(error)}
+                        aria-describedby={error ? errorId : undefined}
                         onChange={(event) => {
                           const file = event.currentTarget.files?.[0]
                           setSelectedFileName(file?.name ?? '')
@@ -214,6 +233,10 @@ export function LeadForm() {
                       name={field.name}
                       type={field.type}
                       placeholder={field.placeholder}
+                      autoComplete={getAutocomplete(field.name)}
+                      inputMode={field.type === 'tel' ? 'tel' : undefined}
+                      aria-invalid={Boolean(error)}
+                      aria-describedby={error ? errorId : undefined}
                       className={cn(
                         commonClass,
                         error ? 'border-[#8f2d2d]' : 'border-[#d9d2c8]',
@@ -222,21 +245,31 @@ export function LeadForm() {
                   )}
 
                   {error ? (
-                    <p className='mt-2 text-sm text-[#8f2d2d]'>{error}</p>
+                    <p
+                      id={errorId}
+                      className='mt-2 text-sm text-[#8f2d2d]'
+                    >
+                      {error}
+                    </p>
                   ) : null}
                 </div>
               )
             })}
           </div>
 
-          <label className='mt-6 flex gap-3 text-sm leading-6 text-[#4c4944]'>
+          <div className='mt-6 flex gap-3 text-sm leading-6 text-[#4c4944]'>
             <input
+              id='agreement'
               name='agreement'
               type='checkbox'
               className='mt-1 h-4 w-4 rounded border-[#cfc7bb] accent-[#1f1f1f]'
+              aria-invalid={Boolean(errors.agreement)}
+              aria-describedby={
+                errors.agreement ? 'agreement-error' : undefined
+              }
             />
-            <span>
-              {form.agreement}{' '}
+            <div>
+              <label htmlFor='agreement'>{form.agreement}</label>{' '}
               <Link
                 href='/consent'
                 className='underline underline-offset-4 hover:text-[#1f1f1f]'
@@ -251,10 +284,12 @@ export function LeadForm() {
                 Политику конфиденциальности
               </Link>
               .
-            </span>
-          </label>
+            </div>
+          </div>
           {errors.agreement ? (
-            <p className='mt-2 text-sm text-[#8f2d2d]'>{errors.agreement}</p>
+            <p id='agreement-error' className='mt-2 text-sm text-[#8f2d2d]'>
+              {errors.agreement}
+            </p>
           ) : null}
 
           <button
@@ -269,6 +304,7 @@ export function LeadForm() {
             <div
               className='mt-6 rounded-2xl border border-[#cad9c5] bg-[#f2f8f0] p-4 text-sm leading-6 text-[#2f5b2d]'
               role={section.successRole}
+              aria-live='polite'
             >
               {successMessage}
             </div>
@@ -278,6 +314,7 @@ export function LeadForm() {
             <div
               className='mt-6 rounded-2xl border border-[#e1b8b8] bg-[#fff5f5] p-4 text-sm leading-6 text-[#8f2d2d]'
               role='alert'
+              aria-live='polite'
             >
               {submitMessage}
             </div>

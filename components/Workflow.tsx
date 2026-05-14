@@ -35,7 +35,7 @@ export function Workflow() {
           <p className="max-w-2xl text-lg leading-7 text-[#efefef]">{section.cta}</p>
           <a
             href="#lead"
-            className="focus-ring mt-5 inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#ae906a] px-5 text-sm font-medium text-white transition hover:bg-[#c8a16e] hover:text-[#1f1f21] md:mt-0"
+            className="focus-ring mt-5 inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#ae906a] px-5 text-sm font-medium text-[#1f1f21] transition hover:bg-[#c8a16e] md:mt-0"
           >
             {section.ctaLabel}
             <ArrowRight aria-hidden size={18} />

@@ -58,6 +58,24 @@ export function StructuredData() {
     },
   };
 
+  const localBusinessSchema = {
+    "@id": `${siteUrl}/#local-business`,
+    "@type": "HomeAndConstructionBusiness",
+    name: `${landingData.brand.name} Project`,
+    url: siteUrl,
+    image: `${siteUrl}${landingData.hero.image}`,
+    logo: `${siteUrl}${landingData.brand.logo}`,
+    email: landingData.contacts.email,
+    telephone: landingData.contacts.office.phone,
+    openingHours: "Mo-Fr 10:00-19:00",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Санкт-Петербург",
+      streetAddress: "ул. Съезжинская, д. 11",
+      addressCountry: "RU",
+    },
+  };
+
   const serviceSchema = {
     "@id": `${pageUrl}#service`,
     "@type": "Service",
@@ -123,13 +141,23 @@ export function StructuredData() {
     ],
   };
 
+  const imageSchema = {
+    "@id": `${pageUrl}#hero-image`,
+    "@type": "ImageObject",
+    contentUrl: `${siteUrl}${landingData.hero.image}`,
+    name: landingData.hero.imageAlt,
+    caption: landingData.hero.imageCaption,
+  };
+
   const data = {
     "@context": "https://schema.org",
     "@graph": [
       organizationSchema,
+      localBusinessSchema,
       serviceSchema,
       webPageSchema,
       breadcrumbSchema,
+      imageSchema,
       faqSchema,
     ],
   };

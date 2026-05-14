@@ -24,7 +24,7 @@ export function Hero() {
           <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
             <a
               href='#lead'
-              className='focus-ring inline-flex h-13 items-center justify-center gap-2 rounded-full bg-[#ae906a] px-7 text-sm font-medium text-white transition hover:bg-[#c8a16e] hover:text-[#1f1f21]'
+              className='focus-ring inline-flex h-13 items-center justify-center gap-2 rounded-full bg-[#ae906a] px-7 text-sm font-medium text-[#1f1f21] transition hover:bg-[#c8a16e]'
             >
               {hero.primaryCta}
               <ArrowRight aria-hidden size={18} />

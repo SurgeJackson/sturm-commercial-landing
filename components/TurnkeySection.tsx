@@ -16,7 +16,7 @@ export function TurnkeySection() {
             <p className="mt-6 max-w-2xl text-base leading-7 text-[#6f6f6f] md:text-lg">{turnkey.description}</p>
             <a
               href="#lead"
-              className="focus-ring mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#ae906a] px-6 text-sm font-medium text-white transition hover:bg-[#c8a16e] hover:text-[#1f1f21]"
+              className="focus-ring mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#ae906a] px-6 text-sm font-medium text-[#1f1f21] transition hover:bg-[#c8a16e]"
             >
               Отправить спецификацию
               <ArrowRight aria-hidden size={18} />

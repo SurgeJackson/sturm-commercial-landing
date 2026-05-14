@@ -14,7 +14,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#575258] bg-[#1f1f21]/96 text-white backdrop-blur-xl">
       <div className="container-shell flex h-16 items-center justify-between gap-5">
-        <Link href="/#about" className="focus-ring flex items-center gap-3" aria-label="STURM Проектные поставки, к началу страницы">
+        <Link href="/#about" className="focus-ring flex items-center gap-3">
           <Image src={brand.logo} alt={brand.logoAlt} width={182} height={47} priority className="h-auto w-28 md:w-34" />
           <span className="hidden h-5 w-px bg-[#7d7474cc] lg:block" />
           <span className="hidden text-xs text-[#c8a16e] lg:block">{brand.label}</span>
@@ -31,7 +31,7 @@ export function Header() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/#lead"
-            className="focus-ring inline-flex h-10 items-center justify-center rounded-full bg-[#ae906a] px-5 text-[13px] font-medium text-white transition hover:bg-[#c8a16e] hover:text-[#1f1f21]"
+            className="focus-ring inline-flex h-10 items-center justify-center rounded-full bg-[#ae906a] px-5 text-[13px] font-medium text-[#1f1f21] transition hover:bg-[#c8a16e]"
           >
             {header.cta}
           </Link>
@@ -64,7 +64,7 @@ export function Header() {
           ))}
           <Link
             href="/#lead"
-            className="focus-ring mt-3 inline-flex h-11 items-center justify-center rounded-full bg-[#ae906a] px-5 text-sm font-medium text-white"
+            className="focus-ring mt-3 inline-flex h-11 items-center justify-center rounded-full bg-[#ae906a] px-5 text-sm font-medium text-[#1f1f21]"
             onClick={() => setOpen(false)}
           >
             {header.cta}
