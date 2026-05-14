@@ -23,12 +23,12 @@ export function TurnkeySection() {
             </a>
           </div>
 
-          <div className="grid gap-px bg-[#e0d4d4cc] sm:grid-cols-2">
+          <ol className="grid gap-px bg-[#e0d4d4cc] sm:grid-cols-2">
             {turnkey.items.map((item, index) => {
               const Icon = featureIcons[index] ?? Check;
 
               return (
-                <article key={item} className="min-h-[142px] bg-white p-6 transition hover:bg-[#fbfaf8] md:p-7">
+                <li key={item} className="min-h-[142px] bg-white p-6 transition hover:bg-[#fbfaf8] md:p-7">
                   <div className="flex items-start justify-between gap-4">
                     <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-[#e0d4d4cc] bg-[#f7f5f1] text-[#ae906a]">
                       <Icon aria-hidden size={20} />
@@ -37,11 +37,11 @@ export function TurnkeySection() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <h3 className="mt-6 text-lg font-medium leading-6 text-[#1f1f21]">{item}</h3>
-                </article>
+                  <p className="mt-6 text-lg font-medium leading-6 text-[#1f1f21]">{item}</p>
+                </li>
               );
             })}
-          </div>
+          </ol>
         </div>
       </div>
     </section>
